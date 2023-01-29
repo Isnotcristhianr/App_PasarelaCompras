@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App_PasarelaCompras.Vistas.Compras"
+             NavigationPage.HasNavigationBar="false"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:transicion="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             >
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#050506">
+            <!--d-->
+            <Grid RowDefinitions="*, 100" VerticalOptions="FillAndExpand" x:Name="gridProductos">
+                <pancake:PancakeView CornerRadius="0,0,40,40" BackgroundColor="#EFEFEC">
+                    <ScrollView HeightRequest="600">
+                        <Grid ColumnDefinitions="*,*" Margin="10,0,10,0" RowDefinitions="80,*">
+                            <StackLayout Orientation="Horizontal" Grid.ColumnSpan="2">
+                                <Image Source="https://i.ibb.co/vjQ2WkM/back-2.png" HeightRequest="30" Margin="0,0,10,0"></Image>
+                                <Label Text="Vinos y Licores" VerticalOptions="Center" FontSize="20" TextColor="#3D3D3D" Margin="35,0,0,0"></Label>
+                                <Image Source="https://i.ibb.co/PrfGsmv/control-de-ecualizador.png" HeightRequest="30" HorizontalOptions="EndAndExpand" Margin="0,0,10,0"></Image>
+                            </StackLayout>
+
+                            <!--#region Carrito Pnl Contador -->
+                            <StackLayout x:Name="ladoIzquierda" Grid.Row="1" >
+                                <Frame HeightRequest="330" CornerRadius="10" Margin="4" BackgroundColor="White" Padding="20">
+                                    <StackLayout>
+                                        <Image Source="https://i.ibb.co/pKCmmrX/vino-Naranja.png" HeightRequest="200" HorizontalOptions="Center" 
+                                               Margin="0,10,0,0"></Image>
+                                        <Label Text="$12.00" FontAttributes="Bold" FontSize="22" Margin="0,10" TextColor="#333333"></Label>
+                                        <Label Text="Vino de Naranja" FontSize="18" TextColor="Black" CharacterSpacing="1"></Label>
+                                        <Label Text="750ml" FontSize="13" TextColor="Gray" CharacterSpacing="1"></Label>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                            <!--#endregion-->
+
+                            <StackLayout x:Name="ladoDerecha" Grid.Column="1" Grid.Row="1">
+                            </StackLayout>
+                        </Grid>
+                    </ScrollView>
+
+                </pancake:PancakeView>
+                <StackLayout Grid.Row="1" Orientation="Horizontal" Margin="0,0,1,0" x:Name="PanelContador">
+                    <StackLayout.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Up" Swiped="DeslizarPnlContador"></SwipeGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                    <Label Text="🛍" FontSize="30" FontAttributes="Bold" VerticalOptions="Center" TextColor="White"
+                           Margin="20,10,10,0" WidthRequest="75"></Label>
+
+                    <CollectionView HorizontalOptions="CenterAndExpand" VerticalOptions="Center"
+                                    ItemsSource="{Binding ListaPreviaCompras}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal" Span="1" HorizontalItemSpacing="10"></GridItemsLayout>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="4,0" WidthRequest="30">
+                                    <Frame CornerRadius="20" HorizontalOptions="Center" VerticalOptions="Center" >
+                                    </Frame>
+                                    <Image Source="{Binding Imagen}" Margin="0,6" WidthRequest="30" HorizontalOptions="Center" 
+                                           transicion:Transition.Group="{Binding IdProducto}" 
+                                           transicion:Transition.Name="producto"
+                                           ></Image>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Frame HeightRequest="40" WidthRequest="60" VerticalOptions="Center" CornerRadius="30" Padding="5" 
+                           BackgroundColor="Aquamarine">
+                        <Label Text="{Binding CantidadTotal}" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
+                               FontSize="20" FontAttributes="Bold" TextColor="White"></Label>
+                    </Frame>
+
+                </StackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding command}"></TapGestureRecognizer>
+                </Grid.GestureRecognizers>
+            </Grid>
+            
+            <!--#region Panel detalle compra -->
+            <StackLayout x:Name="panelDetalleCompra" VerticalOptions="FillAndExpand"
+                         IsVisible="{Binding IsVisiblePnlDetalleCompras}">
+                <StackLayout.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Down" Swiped="DeslizarPnlDetalleCompra"></SwipeGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                
+                <Label Text="🛒" TextColor="White" FontSize="32" FontAttributes="Bold" 
+                       Padding="40,30,40,40" HeightRequest="120" WidthRequest="100" ></Label>
+                <CollectionView HeightRequest="400" VerticalOptions="Center" ItemsSource="{Binding ListaPreviaCompras}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="0,12" Orientation="Horizontal" Spacing="10">
+                                <Grid WidthRequest="75" Margin="15,0">
+                                    <Frame BackgroundColor="White" CornerRadius="30" HorizontalOptions="Center"
+                                           VerticalOptions="Center"></Frame>
+                                    <Image Source="{Binding Imagen}" WidthRequest="25" Margin="0,10" 
+                                           HorizontalOptions="Center"></Image>
+                                </Grid>
+                                <Label Text="{Binding Cantidad}" TextColor="White" VerticalOptions="Center"></Label>
+                                <Label Text="x" TextColor="White" VerticalOptions="Center"></Label>
+                                <Label Text="{Binding Descripcion}" TextColor="White" VerticalOptions="Center"></Label>
+                                <Label Text="{Binding Total}" TextColor="White" VerticalOptions="Center" 
+                                       HorizontalOptions="EndAndExpand" Margin="45,0"></Label>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <StackLayout Orientation="Horizontal" Margin="35,0,30,0">
+                    <Grid WidthRequest="90">
+                        <Frame CornerRadius="30" BackgroundColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"></Frame>
+                        <Image Source="https://i.ibb.co/fdVCdPz/camion.png" WidthRequest="30"
+                               HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                    </Grid>
+                    <StackLayout Margin="20,0,30,0" >
+                        <Label Text="Delivery" TextColor="White"></Label>
+                        <Label Text="Todas las ordenes de 30$ o mas tienen envio GRATIS hasta las 12h00pm"
+                               TextColor="Gray"></Label>
+                    </StackLayout>
+                    <Label Text="$10" TextColor="White" FontAttributes="Bold" WidthRequest="90" Margin="0,30,0,0"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="50,50,50,50">
+                    <Label Text="Total: " TextColor="White" FontSize="35" FontAttributes="Bold"></Label>
+                    <Label Text="37,85" TextColor="White" FontSize="35" FontAttributes="Bold"
+                           HorizontalOptions="EndAndExpand"></Label>
+                </StackLayout>
+                <Button Text="Siguiente" BackgroundColor="Aquamarine" CornerRadius="30" Margin="25,0,25,0"
+                        HeightRequest="75"></Button>
+            </StackLayout>
+            <!--#endregion-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
