@@ -29,7 +29,6 @@ namespace App_PasarelaCompras.Vistas
         private async void Compras_Appearing(object sender, EventArgs e)
         {
             await vm.PreviaDetalleCompra();
-            await vm.PreviaDetalleCompra();
             await vm.SumarCantidades();
         }
 
@@ -42,6 +41,17 @@ namespace App_PasarelaCompras.Vistas
         {
             await vm.MostrarGridProductos(gridProductos, panelDetalleCompra, PanelContador);
 
+        }
+
+        private void BtnEliminar(object sender, EventArgs e)
+        {
+            DisplayAlert("Eliminar", "Se va a eliminar", "OK");
+        }
+
+        private  async void BtnComprar(object sender, EventArgs e)
+        {
+            await Task.Delay(3000);
+            await DisplayAlert("Tarea finalizada","Comprada","ok");
         }
     }
 }

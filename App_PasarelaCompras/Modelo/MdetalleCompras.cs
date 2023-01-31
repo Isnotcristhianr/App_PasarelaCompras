@@ -18,6 +18,8 @@ namespace App_Compras.Modelo
         public string Imagen { get; set; }
         //detalles
         public string Descripcion { get; set; }
+        //pagar
+       //public string PagarCompra { get; set; }
 
     }
 }

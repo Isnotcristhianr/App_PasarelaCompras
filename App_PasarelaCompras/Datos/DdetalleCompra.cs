@@ -29,7 +29,7 @@ namespace App_PasarelaCompras.Datos
 
         public async Task<List<MdetalleCompras>> PreviaDetalleCompra()
         {
-
+          
             //almacenar ids
             var ListaDetalleCompras = new List<MdetalleCompras>();
             var funcionProductos = new Dproductos();
@@ -56,6 +56,49 @@ namespace App_PasarelaCompras.Datos
                 var listaProductos = await funcionProductos.MostrarProductosId(paramProductos);
 
                 parametros.Imagen = listaProductos[0].Icono;
+                parametros.Cantidad = tmp.Cantidad;
+                parametros.Total = tmp.Total;
+                parametros.Descripcion = listaProductos[0].Descripcion;
+
+                //parametros.PagarCompra = ((Int32.Parse(tmp.Cantidad))*(Int32.Parse(tmp.Total))).ToString();
+
+                ListaDetalleCompras.Add(parametros);
+
+
+            }
+
+            return ListaDetalleCompras;
+
+        }
+
+        public async Task<List<MdetalleCompras>> PreviaPagar()
+        {
+
+            //almacenar ids
+            var ListaDetalleCompras = new List<MdetalleCompras>();
+            var funcionProductos = new Dproductos();
+            var paramProductos = new Mproductos();
+
+
+            //lista de datos
+            var data = (await Cconexion.firebase.Child("DetalleCompra").OnceAsync<MdetalleCompras>())
+                .Where(a => a.Key != "Modelo")
+                .Select(item => new MdetalleCompras()
+                {
+                    IdProducto = item.Object.IdProducto,
+                    Cantidad = item.Object.Cantidad,
+                    Total = item.Object.Total
+                });
+
+            //recorrer ids de img
+            foreach (var tmp in data)
+            {
+
+                var parametros = new MdetalleCompras();
+                parametros.IdProducto = tmp.IdProducto;
+                paramProductos.IdProducto = tmp.IdProducto;
+                var listaProductos = await funcionProductos.MostrarProductosId(paramProductos);
+
                 parametros.Cantidad = tmp.Cantidad;
                 parametros.Total = tmp.Total;
                 parametros.Descripcion = listaProductos[0].Descripcion;

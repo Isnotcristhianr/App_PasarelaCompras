@@ -67,6 +67,7 @@ namespace App_PasarelaCompras.VistaModelo
 
             //obtener lado
             var _ubicacion = Convert.ToBoolean(index % 2);
+
             //asignar lado
             var lado = _ubicacion ? ladoDerecha : ladoIzquierda;
 
@@ -153,6 +154,11 @@ namespace App_PasarelaCompras.VistaModelo
             var funcion = new DdetalleCompra();
             ListaPreviaCompras = await funcion.PreviaDetalleCompra();
         }
+        public async Task Pagar()
+        {
+            var funcion = new DdetalleCompra();
+            ListaPreviaCompras = await funcion.PreviaPagar();
+        }
         public async Task ProcesoAsyncrono()
         {
             await Task.Delay(1000);
@@ -182,10 +188,17 @@ namespace App_PasarelaCompras.VistaModelo
             var funcion = new DdetalleCompra();
             CantidadTotal = await funcion.SumarCantitad();
         }
+
+        public void Elimnar()
+        {
+            _ = DisplayAlert("Eliminar", "Se va a eliminar", "OK");
+        }
         #endregion
         #region COMANDOS
         public ICommand ProcesoAsyncommand => new Command(async () => await ProcesoAsyncrono());
         //public ICommand ProcesoSimpcommand => new Command(ProcesoSimple);
         #endregion
+        public ICommand Eliminarcommand => new Command(Elimnar);
+
     }
 }
