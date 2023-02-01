@@ -160,4 +160,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\drunk.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cart.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\delivery.gif" />
+  </ItemGroup>
 </Project>
