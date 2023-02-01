@@ -1,4 +1,5 @@
-﻿using App_PasarelaCompras.VistaModelo;
+﻿using Acr.UserDialogs;
+using App_PasarelaCompras.VistaModelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,8 +51,19 @@ namespace App_PasarelaCompras.Vistas
 
         private  async void BtnComprar(object sender, EventArgs e)
         {
-            await Task.Delay(3000);
-            await DisplayAlert("Tarea finalizada","Comprada","ok");
+            //cancelar carga
+            bool cancelar = false;
+            using (var dialog = UserDialogs.Instance.Progress(title: "Procesando", onCancel: ()=> cancelar=true, cancelText: "Cancelar")) { 
+            
+                for (int i = 1; i <= 10; i++) {
+                    await Task.Delay(750);
+                    if (!cancelar)
+                    {
+                        dialog.PercentComplete = i * 10;
+                    }
+                }            
+            }
+            //enviar a login
         }
     }
 }
