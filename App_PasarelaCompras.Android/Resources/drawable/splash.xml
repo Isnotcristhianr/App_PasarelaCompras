@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+	<!--Config-->
+	<item>
+		<color android:color="@color/colorFondoSplash"></color>
+	</item>
+	<item android:drawable="@drawable/iconolaucher_adaptive_fore"
+	android:gravity="center">
+		
+	</item>
+</layer-list>
