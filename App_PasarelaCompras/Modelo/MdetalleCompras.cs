@@ -21,5 +21,8 @@ namespace App_Compras.Modelo
         //pagar
        //public string PagarCompra { get; set; }
 
+        //stock
+        public string Stock { get; set; }
+
     }
 }

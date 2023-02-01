@@ -13,6 +13,7 @@ namespace App_PasarelaCompras.Modelo
 
         //idAdicional
         public string IdProducto { get; set; }
-
+        //stock
+       // public string Stock { get; set; }
     }
 }

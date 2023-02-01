@@ -30,9 +30,13 @@
                                 <TapGestureRecognizer Command="{Binding Aumentarcommand}"/>
                             </Label.GestureRecognizers>
                         </Label>
+                        
 
-                    </Grid>
-                    <Label Text="{Binding recibir.Precio}" FontSize="30" FontAttributes="Bold" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
+                    </Grid >
+                    <Label Text="Stock: " FontSize="15" FontAttributes="Bold" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
+                    <Label Text="{Binding Stock}" FontSize="15" FontAttributes="Bold" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
+                    <Label Text="Precio: " FontSize="15" FontAttributes="Bold" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
+                    <Label Text="{Binding recibir.Precio}" FontSize="15" FontAttributes="Bold" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
                 </StackLayout>
 
                 <Label Text="Descripcion del Producto" FontAttributes="Bold" FontSize="20" TextColor="Black" Margin="0,15,0,0"></Label>
