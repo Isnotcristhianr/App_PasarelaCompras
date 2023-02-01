@@ -6,12 +6,18 @@
 >
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
-            <Image Source="Beer.gif" IsAnimationPlaying="True" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+            <Image Source="drunk.gif" IsAnimationPlaying="True" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
                    Margin="0,100,0,0"></Image>
-            <Label Text="Gracias por tu compra" TextColor="Black"
+            <Label
+                Text="Gracias por tu compra  &#10; Disfruta con moderacion"
+                TextColor="Black" CharacterSpacing="1" HorizontalTextAlignment="Center" FontSize="25" FontAttributes="Bold"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
-                   Margin="0,-500,0,0"/>
+                   Margin="0,-300,0,0"
+                >
+            </Label>
+            <Button Text="Continuar" BackgroundColor="Aquamarine" CornerRadius="30" Margin="25"
+                        HeightRequest="70" Clicked="BtnComprar" x:Name="btnComprar"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

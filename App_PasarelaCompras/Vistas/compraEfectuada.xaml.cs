@@ -16,5 +16,11 @@ namespace App_PasarelaCompras.Vistas
         {
             InitializeComponent();
         }
+
+        private void BtnComprar(object sender, EventArgs e)
+        {
+            //enviar login
+            Navigation.PushAsync(new Compras());
+        }
     }
 }

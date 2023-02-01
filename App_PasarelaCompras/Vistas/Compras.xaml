@@ -74,10 +74,11 @@
                     <SwipeGestureRecognizer Direction="Down" Swiped="DeslizarPnlDetalleCompra"></SwipeGestureRecognizer>
                 </StackLayout.GestureRecognizers>
 
+                
                 <Label Text="🛒" TextColor="White" FontSize="32" FontAttributes="Bold" 
-                       Padding="40,30,40,40" HeightRequest="120" Margin="0,80,0,0"></Label>
+                       Padding="40,30,40,40" HeightRequest="120" Margin="0,90,0,0"></Label>
                 <Label Text="        Prod            Cant                                              Precio        Accion      " 
-                       HorizontalOptions="CenterAndExpand"></Label>
+                       HorizontalOptions="CenterAndExpand" Margin="0,10,0,0"></Label>
                 <CollectionView HeightRequest="500" VerticalOptions="Center" 
                                 HorizontalOptions="CenterAndExpand" ItemsSource="{Binding ListaPreviaCompras}">
                     <!--#region detalle -->
@@ -123,13 +124,11 @@
                     <Label Text="{}" TextColor="White" FontSize="35" FontAttributes="Bold"
                            HorizontalOptions="EndAndExpand"></Label>
                 </StackLayout>
-                <Button Text="Comprar 🍾" BackgroundColor="Aquamarine" CornerRadius="30" Margin="25,0,25,0"
+                <Button Text="Comprar 🍾" BackgroundColor="Aquamarine" CornerRadius="30" Margin="2,0,2,0"
                         HeightRequest="70" Clicked="BtnComprar" x:Name="btnComprar"></Button>
+                
             </StackLayout>
             <!--#endregion-->
-            <ContentView >
-                
-            </ContentView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

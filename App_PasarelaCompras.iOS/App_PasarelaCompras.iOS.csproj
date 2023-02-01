@@ -157,4 +157,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\Beer.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\drunk.gif" />
+  </ItemGroup>
 </Project>
