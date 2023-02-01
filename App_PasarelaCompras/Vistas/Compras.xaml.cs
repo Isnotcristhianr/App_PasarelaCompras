@@ -64,6 +64,7 @@ namespace App_PasarelaCompras.Vistas
                 }            
             }
             //enviar a login
+            await Navigation.PushAsync(new compraEfectuada());
         }
     }
 }

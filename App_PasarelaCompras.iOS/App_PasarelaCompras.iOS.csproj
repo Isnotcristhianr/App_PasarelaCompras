@@ -154,4 +154,7 @@
       <Name>App_PasarelaCompras</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Beer.gif" />
+  </ItemGroup>
 </Project>
