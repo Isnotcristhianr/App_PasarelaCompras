@@ -46,7 +46,7 @@ namespace App_PasarelaCompras.Vistas
 
         private void BtnEliminar(object sender, EventArgs e)
         {
-            DisplayAlert("Eliminar", "Se va a eliminar: ", "OK");
+            DisplayAlert("Eliminar", "Se va a eliminar: ", "OK", "Cancelar");
         }
 
         private  async void BtnComprar(object sender, EventArgs e)

@@ -28,7 +28,6 @@ namespace App_PasarelaCompras.Vistas
         }
 
         private async void AgregarCompra_Appearing(object sender, EventArgs e) {
-          //  await vm.PreviaStock();
         }
         
     }

@@ -25,6 +25,7 @@ namespace App_PasarelaCompras.Datos
                     Descripcion = item.Object.Descripcion,
                     Icono = item.Object.Icono,
                     Precio = item.Object.Precio,
+                    Stock = item.Object.Stock,
                     IdProducto = item.Key
 
                 }).ToList();
@@ -41,6 +42,7 @@ namespace App_PasarelaCompras.Datos
                     Descripcion = item.Object.Descripcion,
                     Icono = item.Object.Icono,
                     Precio = item.Object.Precio,
+                    Stock = item.Object.Stock,
                     IdProducto = item.Key
 
                 }).ToList();

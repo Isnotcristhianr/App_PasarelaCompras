@@ -15,7 +15,7 @@ namespace App_PasarelaCompras.VistaModelo
         #region VARIABLES
         string _Texto;
         int _Cant;
-        int _Stock;
+        string _Stock;
         String _PrecioTexto;
         //extra
         public Mproductos recibir { get; set; }
@@ -39,7 +39,7 @@ namespace App_PasarelaCompras.VistaModelo
             get { return _Cant; }
             set { SetValue(ref _Cant, value); }
         }
-        public int Stock
+        public string Stock
         {
             get { return _Stock; }
             set { SetValue(ref _Stock, value); }
@@ -60,7 +60,7 @@ namespace App_PasarelaCompras.VistaModelo
             parametros.Cantidad = Cantidad.ToString();
             parametros.IdProducto = recibir.IdProducto;
             parametros.PrecioCompra = recibir.Precio;
-            parametros.Stock = Stock.ToString(); 
+            parametros.Stock = recibir.Stock; 
            
             double precioCompra = Convert.ToDouble(recibir.Precio);
             double cantidad = Convert.ToDouble(Cantidad);
@@ -131,15 +131,11 @@ namespace App_PasarelaCompras.VistaModelo
             }
         }
 
-        public void DisminuirStockCant() {
 
-            if (Cantidad > Stock)
-            {
-                Stock = Cantidad - Stock;
-            }
-            else {
-                _ = DisplayAlert("Stock", "No se puede comprar sin Stock", "Cerrar");
-            }
+        public async Task RestarStock()
+        {
+            var funcion = new DdetalleCompra();
+            Stock = await funcion.RestarStock();
         }
 
         //volver

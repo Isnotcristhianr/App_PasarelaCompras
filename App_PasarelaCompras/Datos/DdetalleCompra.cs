@@ -23,7 +23,8 @@ namespace App_PasarelaCompras.Datos
                 Cantidad = parametros.Cantidad,
                 IdProducto = parametros.IdProducto,
                 PrecioCompra = parametros.PrecioCompra,
-                Total = parametros.Total,
+                Stock = parametros.Stock,
+                Total = parametros.Total
             });
         }
 
@@ -43,6 +44,7 @@ namespace App_PasarelaCompras.Datos
                     IdProducto = item.Object.IdProducto,
                     IdDetalleCompra = item.Key,
                     Cantidad = item.Object.Cantidad,
+                    Stock = item.Object.Stock,
                     Total = item.Object.Total
                 });
 
@@ -58,6 +60,7 @@ namespace App_PasarelaCompras.Datos
                 parametros.Imagen = listaProductos[0].Icono;
                 parametros.Cantidad = tmp.Cantidad;
                 parametros.Total = tmp.Total;
+                parametros.Stock = tmp.Stock;
                 parametros.Descripcion = listaProductos[0].Descripcion;
 
                 //parametros.PagarCompra = ((Int32.Parse(tmp.Cantidad))*(Int32.Parse(tmp.Total))).ToString();
@@ -87,6 +90,7 @@ namespace App_PasarelaCompras.Datos
                 {
                     IdProducto = item.Object.IdProducto,
                     Cantidad = item.Object.Cantidad,
+                    Stock = item.Object.Stock,
                     Total = item.Object.Total
                 });
 
@@ -101,6 +105,7 @@ namespace App_PasarelaCompras.Datos
 
                 parametros.Cantidad = tmp.Cantidad;
                 parametros.Total = tmp.Total;
+                parametros.Stock = tmp.Stock;
                 parametros.Descripcion = listaProductos[0].Descripcion;
 
                 ListaDetalleCompras.Add(parametros);
@@ -111,7 +116,7 @@ namespace App_PasarelaCompras.Datos
 
         }
 
-        //validador por id
+        //validador por id para stocks
         public async Task<List<MdetalleCompras>> MostrarCantidades() {
             return (await Cconexion.firebase
                 .Child("DetalleCompra")
@@ -119,6 +124,16 @@ namespace App_PasarelaCompras.Datos
                 .Where(a => a.Key != "Modelo").Select(item => new MdetalleCompras
                 {
                     Cantidad = item.Object.Cantidad
+                }).ToList();
+        }
+        public async Task<List<MdetalleCompras>> MostrarStocks()
+        {
+            return (await Cconexion.firebase
+                .Child("DetalleCompra")
+                .OnceAsync<MdetalleCompras>())
+                .Where(a => a.Key != "Modelo").Select(item => new MdetalleCompras
+                {
+                    Stock = item.Object.Stock
                 }).ToList();
         }
         public async Task<List<MdetalleCompras>> MostrarDetallexIdProd(String idProd)
@@ -157,7 +172,7 @@ namespace App_PasarelaCompras.Datos
                 .PutAsync(data.Object);
         }
 
-        //suma total
+        //suma total cantidad en carrito
         public async Task<String> SumarCantitad() {
             var funcion = new DdetalleCompra();
             var lista = await funcion.MostrarCantidades();
@@ -169,6 +184,22 @@ namespace App_PasarelaCompras.Datos
             }
 
             return cantidad.ToString();
+        }
+
+        //stock total 
+        public async Task<String> RestarStock()
+        {
+            var funcion = new DdetalleCompra();
+            var lista = await funcion.MostrarCantidades();
+
+            int stock = 0;
+
+            foreach (var tmp in lista)
+            {
+                stock -= Convert.ToInt32(tmp.Stock);
+            }
+
+            return stock.ToString();
         }
     }
 }

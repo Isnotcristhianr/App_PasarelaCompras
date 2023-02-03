@@ -34,7 +34,7 @@
 
                     </Grid >
                     <Label Text="Stock: " FontSize="15" FontAttributes="Bold" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
-                    <Label Text="{Binding Stock}" FontSize="15" FontAttributes="Bold" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
+                    <Label Text="{Binding recibir.Stock}" FontSize="15" FontAttributes="Bold" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
                     <Label Text="Precio: " FontSize="15" FontAttributes="Bold" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
                     <Label Text="{Binding recibir.Precio}" FontSize="15" FontAttributes="Bold" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="Center"></Label>
                 </StackLayout>

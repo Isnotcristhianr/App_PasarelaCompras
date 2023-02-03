@@ -11,6 +11,7 @@ using App_PasarelaCompras.Vistas;
 using App_Compras.Modelo;
 //efecto
 using Plugin.SharedTransitions;
+using GalaSoft.MvvmLight.Command;
 
 namespace App_PasarelaCompras.VistaModelo
 {
@@ -184,15 +185,21 @@ namespace App_PasarelaCompras.VistaModelo
             IsVisiblePnlDetalleCompras = false;
         }
 
-        public async Task SumarCantidades() {
+        public async Task SumarCantidades(){
             var funcion = new DdetalleCompra();
             CantidadTotal = await funcion.SumarCantitad();
         }
 
+        /// <summary>
+        /// eliminar
+        /// </summary>
         public void Elimnar()
         {
             _ = DisplayAlert("Eliminar", "Se va a eliminar", "OK");
         }
+
+
+
         #endregion
         #region COMANDOS
         public ICommand ProcesoAsyncommand => new Command(async () => await ProcesoAsyncrono());
